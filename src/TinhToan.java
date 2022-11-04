@@ -1,5 +1,6 @@
 
 import bean.taikhoanbean;
+import bo.taikhoanbo;
 import dao.dangnhapdao;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -41,10 +42,10 @@ public class TinhToan extends UnicastRemoteObject implements ITinhToan{
         
         return dn.ktdn(sotaikhoan, matkhau);
     }
-
-    @Override
-    public void ruttien(long sotien, taikhoanbean tk) throws Exception {
-         //To change body of generated methods, choose Tools | Templates.
+    taikhoanbo tkbo = new taikhoanbo();
+    public taikhoanbean ruttien(long sotien, taikhoanbean tk) throws Exception {
+        taikhoanbean tkhoan =  tkbo.rutien(sotien, tk);
+        return tk;
     }
     
 }

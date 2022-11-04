@@ -16,6 +16,7 @@ public class MyClient {
     public static void main(String[] args) {
     try{
     ITinhToan tt= (ITinhToan)Naming.lookup("rmi://localhost:1099/TinhToan");
+    
     System.out.println(tt.Cong(10,20) );
     System.out.println(tt.Tru(10,20) );
     System.out.println(tt.Nhan(10,20) );

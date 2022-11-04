@@ -8,5 +8,5 @@ public interface ITinhToan extends Remote{
     public int Nhan (int a, int b) throws Exception;
     public int Chia (int a, int b) throws Exception;
     public taikhoanbean ktdn(String sotaikhoan,  String matkhau) throws Exception;
-    public void ruttien(long sotien,taikhoanbean tk)throws Exception;
+    public taikhoanbean ruttien(long sotien,taikhoanbean tk)throws Exception;
 }

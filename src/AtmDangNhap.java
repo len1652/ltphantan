@@ -3,21 +3,10 @@ import bean.taikhoanbean;
 import java.rmi.Naming;
 import javax.swing.JOptionPane;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- *
- * @author phucp
- */
 public class AtmDangNhap extends javax.swing.JFrame {
 
-    /**
-     * Creates new form AtmDangNhap
-     */
+    public static ITinhToan tt;
     public AtmDangNhap() {
         initComponents();
     }
@@ -38,6 +27,11 @@ public class AtmDangNhap extends javax.swing.JFrame {
         edtUn = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setText("User Name");
 
@@ -105,8 +99,9 @@ public class AtmDangNhap extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         try {
-            ITinhToan tt= (ITinhToan)Naming.lookup("rmi://localhost:1099/TinhToan");
+            
             taikhoanbean tk = tt.ktdn(edtUn.getText(), edtPass.getText());
+            
             if(tk!=null){
                 dispose();
                 AtmClient Client = new AtmClient(tk);
@@ -122,6 +117,13 @@ public class AtmDangNhap extends javax.swing.JFrame {
     private void edtUnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtUnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_edtUnActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        try {
+            tt= (ITinhToan)Naming.lookup("rmi://localhost:1099/TinhToan");
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments

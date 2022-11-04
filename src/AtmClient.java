@@ -185,14 +185,23 @@ public class AtmClient extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_formWindowOpened
+    
     public void ruttien(long tienrut){
-        int response = JOptionPane.showConfirmDialog(this,"Bạn chắc chắn?","Thông báo", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+        
+        try {
+            int response = JOptionPane.showConfirmDialog(this,"Bạn chắc chắn?","Thông báo", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
         if(response == JOptionPane.YES_OPTION){
-            
-            tk = tkbo.rutien(tienrut,tk);
+           // AtmDangNhap ttk = new AtmDangNhap();
+            tk = AtmDangNhap.tt.ruttien(tienrut,tk);
             int response2 = JOptionPane.showConfirmDialog(this, "Giao dịch thành công số dư còn lại của bạn là: "+tk.getSoTien()+", bạn muốn giao dịch tiếp?","Thông báo", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
             dispose();
-            if(response2 == JOptionPane.YES_OPTION){
+            if (tienrut > tk.getSoTien()){
+                JOptionPane.showMessageDialog(rootPane,  "Tiền trong tài khoản không đủ thì rút cái gì?");
+            }
+            else if (tienrut > 5000000){
+                JOptionPane.showMessageDialog(rootPane,  "Chỉ được rút tối đa 5 củ thôi");
+            }
+            else if(response2 == JOptionPane.YES_OPTION){
                 
                 AtmClient client = new AtmClient(tk);
                 client.setVisible(true);
@@ -214,6 +223,8 @@ public class AtmClient extends javax.swing.JFrame {
             dispose();
             AtmClient client = new AtmClient(tk);
             client.setVisible(true);
+        }
+        } catch (Exception e) {
         }
     }
     private void btn100ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn100ActionPerformed
