@@ -1,9 +1,13 @@
 
+import bean.chitiettaikhoanbean;
 import bean.taikhoanbean;
+import bo.chitiettaikhoanbo;
 import bo.taikhoanbo;
 import dao.dangnhapdao;
+import dao.taikhoanchuyendao;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 
 
 public class TinhToan extends UnicastRemoteObject implements ITinhToan{
@@ -45,7 +49,27 @@ public class TinhToan extends UnicastRemoteObject implements ITinhToan{
     taikhoanbo tkbo = new taikhoanbo();
     public taikhoanbean ruttien(long sotien, taikhoanbean tk) throws Exception {
         taikhoanbean tkhoan =  tkbo.rutien(sotien, tk);
-        return tk;
+        return tkhoan;
+    }
+
+    @Override
+    public taikhoanbean chuyentien(taikhoanbean tkg, taikhoanbean tkn, long sotien) throws Exception {
+        taikhoanbean tkhoan =  tkbo.chuyentien(tkg, tkn,sotien);
+        return tkhoan;
+    }
+    
+    taikhoanchuyendao tkchuyendao= new taikhoanchuyendao();
+    @Override
+    public taikhoanbean kttk(String sotaikhoan) throws Exception {
+        System.out.println("sai o day");
+        return tkchuyendao.kttkhoan(sotaikhoan);
+    }
+
+    @Override
+    public ArrayList<chitiettaikhoanbean> lsdd(String stk) throws Exception {
+         chitiettaikhoanbo lsubo = new chitiettaikhoanbo();
+         ArrayList<chitiettaikhoanbean> ds = lsubo.getls(stk);
+         return ds;
     }
     
 }

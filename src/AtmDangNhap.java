@@ -1,6 +1,7 @@
 
 import bean.taikhoanbean;
 import java.rmi.Naming;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 
@@ -21,7 +22,7 @@ public class AtmDangNhap extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblPass = new javax.swing.JLabel();
         edtPass = new javax.swing.JPasswordField();
         btnLogin = new javax.swing.JButton();
         edtUn = new javax.swing.JTextField();
@@ -35,7 +36,7 @@ public class AtmDangNhap extends javax.swing.JFrame {
 
         jLabel1.setText("User Name");
 
-        jLabel2.setText("Password");
+        lblPass.setText("Password");
 
         edtPass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -50,6 +51,7 @@ public class AtmDangNhap extends javax.swing.JFrame {
             }
         });
 
+        edtUn.setText("abc");
         edtUn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 edtUnActionPerformed(evt);
@@ -63,15 +65,14 @@ public class AtmDangNhap extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(73, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(151, 151, 151))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(edtUn)
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(edtPass, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(151, 151, 151)))
+                        .addComponent(edtPass, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
+                        .addComponent(lblPass, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(66, 66, 66))
         );
         layout.setVerticalGroup(
@@ -82,7 +83,7 @@ public class AtmDangNhap extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(edtUn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2)
+                .addComponent(lblPass)
                 .addGap(8, 8, 8)
                 .addComponent(edtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
@@ -96,11 +97,23 @@ public class AtmDangNhap extends javax.swing.JFrame {
     private void edtPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtPassActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_edtPassActionPerformed
-
+    ArrayList<String> ds = new ArrayList<String>();
+    ArrayList<Integer> sl = new ArrayList<Integer>();
+    int i=0;
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         try {
             
             taikhoanbean tk = tt.ktdn(edtUn.getText(), edtPass.getText());
+            
+            for(int i=0;i<ds.size();i++){
+                if(ds.get(i).equals(edtUn)){
+                    sl.set(i,sl.get(i)+1);
+                }
+                else{
+                    ds.add(edtUn.getText());
+                    sl.add(1);
+                }
+            }
             
             if(tk!=null){
                 dispose();
@@ -108,7 +121,21 @@ public class AtmDangNhap extends javax.swing.JFrame {
                 Client.setVisible(true);
             }
             else{
+                for(int i=0;i<ds.size();i++){
+                    if(ds.get(i).equals(edtUn)){
+                        if(sl.get(i)==3){
+                            JOptionPane.showMessageDialog(rootPane,  "Nhập sai quá 3 lần khóa");
+                            edtPass.hide();
+                        }
+                    }
+                }
                 JOptionPane.showMessageDialog(rootPane,  "Ten hoac mat khau sai");
+                i++;
+                if(i==3){
+                    edtPass.hide();
+                    lblPass.setText("Sai nhiều lần trong khi dùng ATM quá, khóa nha");
+                }
+                
             }
         } catch (Exception e) {
         }
@@ -165,6 +192,6 @@ public class AtmDangNhap extends javax.swing.JFrame {
     private javax.swing.JPasswordField edtPass;
     private javax.swing.JTextField edtUn;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel lblPass;
     // End of variables declaration//GEN-END:variables
 }

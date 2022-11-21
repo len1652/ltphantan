@@ -25,6 +25,7 @@ public class chittiettaikhoandao {
                 long SoTienRutRa = rs.getLong("SoTienRutRa");
                 String SoTaiKhoan = rs.getString("SoTaiKhoan");
                 String GhiChu = rs.getString("GhiChu");
+                ds.add(new chitiettaikhoanbean(Id, NgayRutTien, SoTienRutRa, SoTaiKhoan, GhiChu));
             }
             rs.close();
             kn.cn.close();

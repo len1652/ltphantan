@@ -1,4 +1,5 @@
 
+
 import bean.taikhoanbean;
 import javax.swing.JOptionPane;
 
@@ -101,15 +102,26 @@ public class AtmNhapSoTienRut extends javax.swing.JFrame {
 
     private void btnXacNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXacNhanActionPerformed
         long tienrut = Long.parseLong(edtTienRut.getText());
-        if(tienrut % 50000==0){
+        
+        if (tienrut % 50000!=0){
+            JOptionPane.showMessageDialog(rootPane,  "Số tiền phải là bội số của 50.000 vnđ");
+        }
+        else if (tienrut > 5000000){
+            JOptionPane.showMessageDialog(rootPane,  "Chỉ được rút tối đa 5 củ thôi");
+        }
+        else if (tienrut > tk.getSoTien()){
+            JOptionPane.showMessageDialog(rootPane,  "Tiền trong tài khoản không đủ thì rút cái gì?");
+        }
+        else if (tienrut <0){
+            JOptionPane.showMessageDialog(rootPane,  "Số âm thì làm sao mà rút");
+        }
+        else{
+            
             dispose();
             AtmClient congcu = new AtmClient(tk);
             congcu.ruttien(tienrut);
-            
         }
-        else {
-            JOptionPane.showMessageDialog(rootPane,  "Số tiền phải là bội số của 50.000 vnđ");
-        }
+        
     }//GEN-LAST:event_btnXacNhanActionPerformed
 
     private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed

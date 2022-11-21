@@ -48,6 +48,8 @@ public class AtmClient extends javax.swing.JFrame {
         btn200 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        btnChuyenTien = new javax.swing.JButton();
+        btnLichSu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -102,28 +104,41 @@ public class AtmClient extends javax.swing.JFrame {
             }
         });
 
+        btnChuyenTien.setText("Chuyển tiền");
+        btnChuyenTien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChuyenTienActionPerformed(evt);
+            }
+        });
+
+        btnLichSu.setText("Lịch sử giao dịch");
+        btnLichSu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLichSuActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(85, 85, 85)
-                .addComponent(lblWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
-                .addComponent(lblSoDu)
-                .addGap(108, 108, 108))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btn500, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn200, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn100, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE))
-                .addGap(47, 47, 47)
+                .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn1tr, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btn500, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn200, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn100, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn1tr, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(60, 60, 60)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblSoDu)
+                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLichSu, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnChuyenTien, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(116, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,19 +147,27 @@ public class AtmClient extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblSoDu))
-                .addGap(53, 53, 53)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn100)
-                    .addComponent(btn1tr))
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn200)
-                    .addComponent(jButton6))
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn500)
-                    .addComponent(jButton5))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(jButton6)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnChuyenTien)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnLichSu)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton5)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                        .addComponent(btn100)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn200)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn500)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn1tr)
+                        .addGap(57, 57, 57))))
         );
 
         pack();
@@ -189,41 +212,48 @@ public class AtmClient extends javax.swing.JFrame {
     public void ruttien(long tienrut){
         
         try {
-            int response = JOptionPane.showConfirmDialog(this,"Bạn chắc chắn?","Thông báo", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
-        if(response == JOptionPane.YES_OPTION){
-           // AtmDangNhap ttk = new AtmDangNhap();
-            tk = AtmDangNhap.tt.ruttien(tienrut,tk);
-            int response2 = JOptionPane.showConfirmDialog(this, "Giao dịch thành công số dư còn lại của bạn là: "+tk.getSoTien()+", bạn muốn giao dịch tiếp?","Thông báo", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
-            dispose();
             if (tienrut > tk.getSoTien()){
                 JOptionPane.showMessageDialog(rootPane,  "Tiền trong tài khoản không đủ thì rút cái gì?");
             }
             else if (tienrut > 5000000){
                 JOptionPane.showMessageDialog(rootPane,  "Chỉ được rút tối đa 5 củ thôi");
             }
-            else if(response2 == JOptionPane.YES_OPTION){
-                
-                AtmClient client = new AtmClient(tk);
-                client.setVisible(true);
-                System.out.println("số tiền trên client sau khi bị trừ: "+tk.getSoTien());
+            else if (tienrut <0){
+                JOptionPane.showMessageDialog(rootPane,  "Số âm thì làm sao mà rút");
             }
-            else{
-                AtmDangNhap dangnhap = new AtmDangNhap();
-                dangnhap.setVisible(true);
+            else {
+                int response = JOptionPane.showConfirmDialog(this,"Bạn chắc chắn?","Thông báo", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+                if(response == JOptionPane.YES_OPTION){
+                // AtmDangNhap ttk = new AtmDangNhap();
+                    tk = AtmDangNhap.tt.ruttien(tienrut,tk);
+                    int response2 = JOptionPane.showConfirmDialog(this, "Giao dịch thành công số dư còn lại của bạn là: "+tk.getSoTien()+", bạn muốn giao dịch tiếp?","Thông báo", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+                    dispose();
+
+                    if(response2 == JOptionPane.YES_OPTION){
+
+                        AtmClient client = new AtmClient(tk);
+                        client.setVisible(true);
+                        System.out.println("số tiền trên client sau khi bị trừ: "+tk.getSoTien());
+                    }
+                    else{
+                        AtmDangNhap dangnhap = new AtmDangNhap();
+                        dangnhap.setVisible(true);
+                    }
+
+
+                }
+                else if(response == JOptionPane.NO_OPTION){
+                    dispose();
+                    AtmClient client = new AtmClient(tk);
+                    client.setVisible(true);
+                }
+                else if(response == JOptionPane.CLOSED_OPTION){
+                    dispose();
+                    AtmClient client = new AtmClient(tk);
+                    client.setVisible(true);
+                }
             }
             
-            
-        }
-        else if(response == JOptionPane.NO_OPTION){
-            dispose();
-            AtmClient client = new AtmClient(tk);
-            client.setVisible(true);
-        }
-        else if(response == JOptionPane.CLOSED_OPTION){
-            dispose();
-            AtmClient client = new AtmClient(tk);
-            client.setVisible(true);
-        }
         } catch (Exception e) {
         }
     }
@@ -254,6 +284,18 @@ public class AtmClient extends javax.swing.JFrame {
         AtmNhapSoTienRut jumpNhap = new AtmNhapSoTienRut(tk);
         jumpNhap.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void btnChuyenTienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChuyenTienActionPerformed
+        dispose();
+        AtmChuyenTien jumpChuyenTien = new AtmChuyenTien(tk);
+        jumpChuyenTien.setVisible(true);
+    }//GEN-LAST:event_btnChuyenTienActionPerformed
+
+    private void btnLichSuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLichSuActionPerformed
+        dispose();
+        AtmLichSuGiaoDich jumplsdd = new AtmLichSuGiaoDich(tk);
+        jumplsdd.setVisible(true);
+    }//GEN-LAST:event_btnLichSuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -295,6 +337,8 @@ public class AtmClient extends javax.swing.JFrame {
     private javax.swing.JButton btn1tr;
     private javax.swing.JButton btn200;
     private javax.swing.JButton btn500;
+    private javax.swing.JButton btnChuyenTien;
+    private javax.swing.JButton btnLichSu;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel lblSoDu;

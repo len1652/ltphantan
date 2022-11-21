@@ -1,23 +1,29 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package dao;
 
 import bean.taikhoanbean;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-
-public class dangnhapdao {
-    public taikhoanbean ktdn (String sotaikhoan,  String matkhau){
+/**
+ *
+ * @author phucp
+ */
+public class taikhoanchuyendao {
+    public taikhoanbean kttkhoan (String sotaikhoan){
         // ketnoi vao csdl
         taikhoanbean tk = null;
         try {
             KetNoi kn = new KetNoi();
         kn.KetNoi();
         //b2: lay du lieu ve
-        String sql = "select * from TaiKhoan where SoTaiKhoan=? and MatKhau=?";
+        String sql = "select * from TaiKhoan where SoTaiKhoan=?";
         PreparedStatement cmd = kn.cn.prepareStatement(sql);
         cmd.setString(1, sotaikhoan);
-        cmd.setString(2, matkhau);
         ResultSet rs = cmd.executeQuery();
         
         if(rs.next()){
